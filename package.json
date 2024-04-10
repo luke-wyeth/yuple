@@ -14,6 +14,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "tailwind": "^4.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
