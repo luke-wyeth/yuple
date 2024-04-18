@@ -8,16 +8,11 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 // const models = require("./models.ts")
-const fetchUser = require("./fetchUser.ts")
 
 // Wait for database to connect, logging an error if there is a problem
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(uri);
-
-  // models.createInstance()
-  let user = await fetchUser.findUser('also_awesome')
-  console.log(user)
 }
 
 
