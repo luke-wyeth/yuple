@@ -1,14 +1,16 @@
+const mongoose = require("mongoose");
+
 const SomeModelSchema = new mongoose.Schema({
-    a_string: String,
-    a_date: Date,
+    name: String,
+    last_name: String
   });
 const SomeModel = mongoose.model("SomeModel", SomeModelSchema);
 
 
 async function createInstance() {
 
-    await SomeModel.create({ name: "also_awesome" });
+    // await SomeModel.create({ name: "also_awesome" });
 }
 
 
-export default createInstance()
+module.exports = { createInstance, SomeModel }

@@ -5,16 +5,19 @@ const uri = process.env.MONGODB_URL
 
 // Import the mongoose module
 const mongoose = require("mongoose");
-
-// Set `strictQuery: false` to globally opt into filtering by properties that aren't in the schema
-// Included because it removes preparatory warnings for Mongoose 7.
-// See: https://mongoosejs.com/docs/migrating_to_6.html#strictquery-is-removed-and-replaced-by-strict
 mongoose.set("strictQuery", false);
+
+// const models = require("./models.ts")
+const fetchUser = require("./fetchUser.ts")
 
 // Wait for database to connect, logging an error if there is a problem
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(uri);
+
+  // models.createInstance()
+  let user = await fetchUser.findUser('also_awesome')
+  console.log(user)
 }
 
 
