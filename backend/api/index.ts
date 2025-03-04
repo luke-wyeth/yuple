@@ -15,7 +15,6 @@ async function main() {
   await mongoose.connect(uri);
 }
 
-
 // var tools = require('./models.ts');
 // tools.createInstance()
 
@@ -25,6 +24,9 @@ async function main() {
 
 const express = require("express");
 const app = express();
+
+const cors = require('cors')
+app.use(cors())
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/test", (req, res) => res.json({hello: 'hello world!2'}));
