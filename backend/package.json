@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./api/index.js"
+    "dev": "nodemon ./api/index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
-    "nodemon": "^3.1.0",
+    "nodemon": "^3.1.9",
     "typescript": "^5.4.5"
   }
 }

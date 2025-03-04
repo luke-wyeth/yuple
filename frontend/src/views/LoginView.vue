@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input v-model="username" placeholder="Username" />
+    <input v-model="email" placeholder="email" />
     <input v-model="password" type="password" placeholder="Password" />
     <button @click="login">Login</button>
     <p>{{ message }}</p>
@@ -17,7 +17,7 @@ const message = ref('')
 
 const login = async () => {
   try {
-    const res = await axios.post('http://localhost:3000/auth/login', { username: username.value, password: password.value })
+    const res = await axios.post('http://localhost:3000/auth/login', { email: email.value, password: password.value })
     localStorage.setItem('token', res.data.token) // Save token
     message.value = 'Login successful'
   } catch {
