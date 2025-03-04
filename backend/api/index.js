@@ -20,6 +20,7 @@ import cors from 'cors';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Routes
 import userRouter from './routes/users.js';

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'  // Import mongoose
-import bcrypt from 'bcrypt'      // Import bcrypt
+import bcrypt from 'bcryptjs'  // Import bcryptjs using ESM syntax
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },

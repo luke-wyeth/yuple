@@ -1,6 +1,6 @@
 import express from 'express'   // Replace require with import
 import jwt from 'jsonwebtoken'  // Replace require with import
-import bcrypt from 'bcrypt'     // Replace require with import
+import bcrypt from 'bcryptjs'  // Import bcryptjs using ESM syntax
 import User from '../models/user.js'  // Replace require with import (ensure correct path)
 import dotenv from 'dotenv'     // Replace require with import
 
