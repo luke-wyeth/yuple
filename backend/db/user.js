@@ -1,10 +1,9 @@
-import mongoose from 'mongoose'  // Import mongoose using ESM syntax
-import * as models from '../api/models.js'  // Import all exported models from 'models.js' using ESM syntax
+import UserModel from '../models/user.js'
 
-async function fetchLastName(userName) {
-  let user = await models.SomeModel.findOne({ name: userName }, 'last_name')
+async function fetchUserMeData() {
+  let user = await UserModel.findOne({username: 'new+user'})
   console.log(user)
-  return user.last_name
+  return user
 }
 
-export { fetchLastName }  // Export the function using ESM syntax
+export { fetchUserMeData }  // Export the function using ESM syntax

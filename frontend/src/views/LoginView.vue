@@ -11,7 +11,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-const username = ref('')
+const email = ref('')
 const password = ref('')
 const message = ref('')
 

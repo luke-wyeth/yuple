@@ -24,9 +24,11 @@ app.use(express.json());
 // Routes
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
+import userRoutes from './routes/user.js'
 
 app.use('/auth', authRoutes);
 app.use('/api', protectedRoutes);
+app.use('/user', userRoutes)
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.get("/test", (req, res) => res.json({ hello: 'hello world!2' }));
