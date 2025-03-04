@@ -17,6 +17,14 @@ const firstname = route.params.firstname
 const message = ref('')
 
 onMounted(async () => {
+
+    const token = localStorage.getItem('token')
+    const res = await axios.get('http://localhost:3000/api/dashboard', {
+    headers: { Authorization: `Bearer ${token}` }
+    })
+    console.log(res.data)
+
+
   try {
     const response = await axios.get('http://localhost:3000/user/lastname/' + firstname)
     message.value = response.data

@@ -1,5 +1,5 @@
 import express from 'express'  // Import express using ESM syntax
-import authMiddleware from '../../middleware/auth.js'  // Import authMiddleware using ESM syntax
+import authMiddleware from '../middleware/auth.js'  // Import authMiddleware using ESM syntax
 
 const router = express.Router()
 

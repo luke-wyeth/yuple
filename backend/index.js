@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { MongoClient, ServerApiVersion } from 'mongodb';
 const uri = process.env.MONGODB_URL;
 
 // Import the mongoose module
@@ -23,11 +22,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-import userRouter from './routes/users.js';
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
 
-app.use('/user', userRouter);
 app.use('/auth', authRoutes);
 app.use('/api', protectedRoutes);
 

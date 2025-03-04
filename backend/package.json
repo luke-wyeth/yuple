@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./api/index.js"
+    "dev": "nodemon ./index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
