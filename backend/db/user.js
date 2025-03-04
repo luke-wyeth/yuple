@@ -1,9 +1,8 @@
 import UserModel from '../models/user.js'
 
-async function fetchUserMeData() {
-  let user = await UserModel.findOne({username: 'new+user'})
-  console.log(user)
+async function fetchUserData(id) {
+  let user = await UserModel.findById(id).select('-password')
   return user
 }
 
-export { fetchUserMeData }  // Export the function using ESM syntax
+export { fetchUserData }  // Export the function using ESM syntax
