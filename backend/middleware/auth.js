@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const SECRET_KEY = process.env.JWT_SECRET || 'your-secret-key';
+const SECRET_KEY = process.env.ACCESS_TOKEN_SECRET
 
 // Authentication Middleware
 const authMiddleware = (req, res, next) => {
