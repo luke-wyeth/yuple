@@ -4,7 +4,7 @@
     <input v-model="username" placeholder="Username" />
     <input v-model="email" type="email" placeholder="Email" />
     <input v-model="password" type="password" placeholder="Password" />
-    <button @click="register">Register</button>
+    <button @click="registerUser">Register</button>
     <p v-if="message">{{ message }}</p>
   </div>
 </template>
@@ -12,24 +12,16 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { register } from '../composables/auth.js'
 
 const username = ref('')
 const email = ref('')
 const password = ref('')
 const message = ref('')
 
-const register = async () => {
-  try {
-    const res = await axios.post('http://localhost:3000/auth/register', {
-      username: username.value,
-      email: email.value,
-      password: password.value
-    })
-
-    localStorage.setItem('token', res.data.token) // Store JWT token
-    message.value = 'Registration successful! You are now logged in.'
-  } catch (err) {
-    message.value = err.response?.data?.error || 'Registration failed'
-  }
+const registerUser = () => {
+  register(username.value, email.value, password.value).then((returnedMessage) => {
+    message.value = returnedMessage
+  })
 }
 </script>

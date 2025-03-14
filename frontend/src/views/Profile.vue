@@ -10,40 +10,26 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { fetchUserData } from '../composables/auth.js'
 
-const user = ref(null);
-const error = ref(null);
+const user = ref(null)
+const error = ref(null)
 
 // Fetch user data function
-const fetchUserData = async () => {
-  const token = localStorage.getItem('token');  // Retrieve JWT from localStorage (or cookie)
 
-  if (!token) {
-    error.value = 'No authentication token found';
-    return;
-  }
-
-  try {
-    const response = await fetch('http://localhost:3000/user/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,  // Send JWT in Authorization header
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch user data');
-    }
-
-    const data = await response.json();
-    user.value = data;  // Set the user data in the reactive variable
-  } catch (err) {
-    error.value = err.message;
-  }
-};
 
 // Fetch user data when the component is mounted
-onMounted(fetchUserData);
+onMounted(() => {
+  try {
+    fetchUserData().then((userData) => {
+      user.value = userData
+    })
+    
+  } catch (err) {
+    error.value = err.message
+  }
+})
+
 </script>
 
 <style scoped>
