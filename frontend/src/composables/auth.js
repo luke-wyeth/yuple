@@ -1,9 +1,4 @@
-import axios from 'axios'
-
-const api = axios.create({
-  baseURL: 'http://localhost:3000',
-  withCredentials: true, // Crucial for sending cookies
-})
+import api from '../services/api.js'
 
 export async function fetchUserData() {
   try {
