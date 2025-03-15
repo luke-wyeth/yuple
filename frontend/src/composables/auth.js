@@ -1,44 +1,50 @@
 import axios from 'axios'
 
-export async function fetchUserData () {
-    const token = localStorage.getItem('token')  // Retrieve JWT from localStorage (or cookie)
-  
-    if (!token) {
-      error.value = 'No authentication token found'
-      return
-    }
-  
-    const response = await fetch('http://localhost:3000/user/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,  // Send JWT in Authorization header
-      },
-    })
+const api = axios.create({
+  baseURL: 'http://localhost:3000',
+  withCredentials: true, // Crucial for sending cookies
+})
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch user data')
-    }
-
+export async function fetchUserData() {
+  try {
+    const response = await api.get('/user/me')
+    return response.data // Or handle as needed
+  } catch (error) {
+    console.error('Failed to fetch user data:', error)
+    throw error // Propagate the error
   }
+}
 
 export async function register(username, email, password) {
-  const res = await axios.post('http://localhost:3000/auth/register', {
-    username: username,
-    email: email,
-    password: password
-  })
-
-  localStorage.setItem('token', res.data.token) // Store JWT token
-  return 'Registration successful! You are now logged in.'
+  try {
+    const response = await api.post('/auth/register', {
+      username: username,
+      email: email,
+      password: password,
+    })
+    return response.data.message // Or handle as needed
+  } catch (error) {
+    console.error('Registration failed:', error)
+    throw error // Propagate the error
+  }
 }
 
 export async function login(email, password) {
   try {
-    const res = await axios.post('http://localhost:3000/auth/login', { email: email, password: password })
-    localStorage.setItem('token', res.data.accessToken) // Save token
-    return 'Login successful'
-  } catch (err) {
-    console.log(err)
-    return 'Invalid credentials'
+    const response = await api.post('/auth/login', { email: email, password: password })
+    return response.data.message // Or handle as needed
+  } catch (error) {
+    console.error('Login failed:', error)
+    throw error // Propagate the error
+  }
+}
+
+export async function logout() {
+  try {
+    const response = await api.post('/auth/logout')
+    return response.data.message
+  } catch (error) {
+    console.error('Logout failed:', error)
+    throw error
   }
 }

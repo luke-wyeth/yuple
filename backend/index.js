@@ -18,8 +18,15 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Replace with your frontend origin
+  credentials: true, // Allow cookies to be sent
+}));
 app.use(express.json());
+
+import cookieParser from 'cookie-parser'; // Import cookie-parser
+
+app.use(cookieParser());
 
 // Routes
 import authRoutes from './routes/auth.js';
